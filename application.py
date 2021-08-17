@@ -16,7 +16,7 @@ def apple_root():
     cur = con.cursor()
     cur.execute('select * from pink_floyd_table;')
     result = cur.fetchall()
-    print(result)
+    con.close()
     track_array = []
 
     for res in result:
@@ -33,7 +33,7 @@ def apple_root():
             "releaseDate": res[9],
         }
         track_array.append(pink_floyd_data)
-    con.close()
+
     return render_template("index.html", datas=track_array)
 
 
