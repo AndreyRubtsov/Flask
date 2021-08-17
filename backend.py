@@ -25,9 +25,9 @@ def apple_getdata():
 
     for res in r['results']:
         if res['artistName']=='Pink Floyd':
-            print(res['trackNumber'])
-            #if not res['trackNumber']==None:
-            res['trackNumber']='No Data'
+            if 'trackNumber' not in res:
+                print(res)
+                res['trackNumber']='No Data'
             cur.execute("INSERT INTO pink_floyd_table (kind, collectionName, trackName, collectionPrice, trackPrice, primaryGenreName, trackCount, trackNumber, releaseDate) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s)",(res['kind'],res['collectionName'],res['trackName'], res['collectionPrice'], res['trackPrice'], res['primaryGenreName'], res['trackCount'], res['trackNumber'], res['releaseDate'] ))
             con.commit()
 
