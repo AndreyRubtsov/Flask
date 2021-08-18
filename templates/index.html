@@ -13,8 +13,9 @@
     <thead>
     <tr>
         <th scope="col">#</th>
-        <th scope="col">Track Name</th>
+        <th scope="col">Kind</th>
         <th scope="col">Collection Name</th>
+        <th scope="col">Track Name</th>
         <th scope="col">Collection Price</th>
         <th scope="col">Track Price</th>
         <th scope="col">Genre</th>
@@ -27,8 +28,9 @@
     {%for data in datas %}
     <tr>
         <th scope="row">{{data.num}}</th>
-        <td>{{data.trackName}}</td>
+        <td>{{data.kind}}</td>
         <td>{{data.collectionName}}</td>
+        <td>{{data.trackName}}</td>
         <td>{{data.collectionPrice}}</td>
         <td>{{data.trackPrice }}</td>
         <td>{{data.primaryGenreName}}</td>
