@@ -34,16 +34,12 @@ for res in r['results']:
             res['collectionPrice'] = 'No Data'
         if 'collectionName' not in res:
             res['collectionName'] = 'No Data'
-        if 'trackName' not in res:
-            res['trackName'] = 'No Data'
         if 'trackPrice' not in res:
             res['trackPrice'] = 'No Data'
         if 'trackCount' not in res:
             res['trackCount'] = 'No Data'
         if 'releaseDate' not in res:
             res['releaseDate'] = 'No Data'
-        if 'kind' not in res:
-            res['kind'] = 'lookup_video'
         raw_list.append(res)
 
 # search albums but maybe not necessary
@@ -56,18 +52,12 @@ for res in r['results']:
             res['trackNumber'] = 'No Data'
         if 'collectionPrice' not in res:
             res['collectionPrice'] = 'No Data'
-        if 'collectionName' not in res:
-            res['collectionName'] = 'No Data'
         if 'trackName' not in res:
             res['trackName'] = 'No Data'
         if 'trackPrice' not in res:
             res['trackPrice'] = 'No Data'
-        if 'trackCount' not in res:
-            res['trackCount'] = 'No Data'
-        if 'releaseDate' not in res:
-            res['releaseDate'] = 'No Data'
         if 'kind' not in res:
-            res['kind'] = 'lookup_album'
+            res['kind'] = 'album'
         raw_list.append(res)
 
 for offset in range(0, 6000, 200):
