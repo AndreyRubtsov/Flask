@@ -19,11 +19,10 @@ cur.execute(
 cur.execute('TRUNCATE TABLE pink_floyd_table RESTART IDENTITY;')
 con.commit()
 
-
 # get raw data to a list
 raw_list = []
 
-#search video
+# search video
 api_url = "https://itunes.apple.com/lookup?id=487143&entity=musicVideo&limit=200"
 r = requests.get(api_url).json()
 del r['results'][0]
@@ -47,7 +46,7 @@ for res in r['results']:
             res['kind'] = 'lookup_video'
         raw_list.append(res)
 
-#search albums but maybe not necessary
+# search albums but maybe not necessary
 api_url = "https://itunes.apple.com/lookup?id=487143&entity=album&limit=200"
 r = requests.get(api_url).json()
 del r['results'][0]
