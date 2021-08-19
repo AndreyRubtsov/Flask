@@ -43,7 +43,7 @@ def apple_root():
 
             # some test
             cur = con.cursor()
-            cur.execute(f'select * from pink_floyd_table where DATE_PART(\'year\', releasedate::date) = {undrey_year} order by trackPrice;')
+            cur.execute(f'select * from pink_floyd_table where DATE_PART(\'year\', releasedate::date) = {undrey_year} order by trackPrice desc;')
             result = cur.fetchall()
             con.close()
             track_array = []
