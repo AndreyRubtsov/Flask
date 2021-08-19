@@ -35,12 +35,9 @@ def apple_root():
         track_array.append(pink_floyd_data)
 
     if request.method == 'POST':
-        if request.form.get('Encrypt') == 'Encrypt':
-            pass
-        else:
-            return render_template("index.html")
-    elif request.method == 'GET':
-        print("No Post Back Call")
+        if request.form.get('submit_b'):
+            undrey_year=request.form.get('text_field')
+            return render_template("index.html", year=undrey_year)
     return render_template("index.html", datas=track_array)
 
 
