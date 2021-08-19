@@ -1,10 +1,10 @@
 import psycopg2
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
 
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def apple_root():
     con = psycopg2.connect(
         database="flask",
@@ -34,6 +34,13 @@ def apple_root():
         }
         track_array.append(pink_floyd_data)
 
+    if request.method == 'POST':
+        if request.form.get('Encrypt') == 'Encrypt':
+            pass
+        else:
+            return render_template("index.html")
+    elif request.method == 'GET':
+        print("No Post Back Call")
     return render_template("index.html", datas=track_array)
 
 

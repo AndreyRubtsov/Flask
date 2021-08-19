@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Title</title>
+</head>
+<body>
+<h1>Here are results for {{datas[0].releaseDate}}</h1>
+
+<table class="table table-hover table-dark">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Kind</th>
+        <th scope="col">Collection Name</th>
+        <th scope="col">Track Name</th>
+        <th scope="col">Collection Price</th>
+        <th scope="col">Track Price</th>
+        <th scope="col">Genre</th>
+        <th scope="col">Track Count</th>
+        <th scope="col">Track Number</th>
+        <th scope="col">Release Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    {%for data in datas %}
+    <tr>
+        <th scope="row">{{data.num}}</th>
+        <td>{{data.kind}}</td>
+        <td>{{data.collectionName}}</td>
+        <td>{{data.trackName}}</td>
+        <td>{{data.collectionPrice}}</td>
+        <td>{{data.trackPrice }}</td>
+        <td>{{data.primaryGenreName}}</td>
+        <td>{{data.trackCount}}</td>
+        <td>{{data.trackNumber}}</td>
+        <td>{{data.releaseDate}}</td>
+    </tr>
+    {%endfor%}
+    </tbody>
+</table>
+
+
+</body>
+</html>
