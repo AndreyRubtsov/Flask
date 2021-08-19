@@ -17,7 +17,7 @@ def apple_root():
     cur.execute('select * from pink_floyd_table;')
     # select * from pink_floyd_table where DATE_PART('year', releasedate::date) = 1967;
     result = cur.fetchall()
-    con.close()
+    # con.close()
     track_array = []
 
     for res in result:
@@ -37,8 +37,33 @@ def apple_root():
 
     if request.method == 'POST':
         if request.form.get('submit_b'):
-            undrey_year=request.form.get('text_field')
-            return render_template("index.html", year=undrey_year)
+            undrey_year=int(request.form.get('text_field'))
+            print(undrey_year)
+            print(type(undrey_year))
+
+            # some test
+            cur = con.cursor()
+            cur.execute(f'select * from pink_floyd_table where DATE_PART(\'year\', releasedate::date) = {undrey_year} order by trackPrice;')
+            result = cur.fetchall()
+            con.close()
+            track_array = []
+
+            for res in result:
+                pink_floyd_data = {
+                    "num": res[0],
+                    "kind": res[1],
+                    "collectionName": res[2],
+                    "trackName": res[3],
+                    "collectionPrice": res[4],
+                    "trackPrice": res[5],
+                    "primaryGenreName": res[6],
+                    "trackCount": res[7],
+                    "trackNumber": res[8],
+                    "releaseDate": res[9],
+                }
+                track_array.append(pink_floyd_data)
+
+            return render_template("index.html", datas=track_array)
     return render_template("index.html", datas=track_array)
 
 
