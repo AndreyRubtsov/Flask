@@ -15,7 +15,7 @@ cur = con.cursor()
 cur.execute(
     'CREATE TABLE IF NOT EXISTS pink_floyd_table (id serial PRIMARY KEY, kind varchar, collectionName varchar,'
     ' trackName varchar, collectionPrice varchar, trackPrice varchar, primaryGenreName varchar,'
-    ' trackCount varchar, trackNumber varchar, releaseDate varchar);')
+    ' trackCount varchar, trackNumber varchar, releaseDate timestamp);')
 cur.execute('TRUNCATE TABLE pink_floyd_table RESTART IDENTITY;')
 con.commit()
 

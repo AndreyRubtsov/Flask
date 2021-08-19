@@ -15,6 +15,7 @@ def apple_root():
     )
     cur = con.cursor()
     cur.execute('select * from pink_floyd_table;')
+    # select * from pink_floyd_table where DATE_PART('year', releasedate::date) = 1967;
     result = cur.fetchall()
     con.close()
     track_array = []
