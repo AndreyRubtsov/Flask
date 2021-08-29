@@ -6,7 +6,7 @@ con = psycopg2.connect(
     database="flask",
     user="undrey",
     password="1234asDF",
-    host="3.15.200.187",
+    host="3.142.77.244",
     port="5432"
 )
 cur = con.cursor()
