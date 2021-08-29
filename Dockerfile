@@ -1,8 +1,6 @@
-FROM ubuntu:latest
-RUN apt update -y
-RUN apt install -y python-pip python-dev build-essential
+FROM python:3.8
 COPY . /app
 WORKDIR /app
-RUN pip install -r requirements.txt
-ENTRYPOINT ['python']
-CMD ['application.py']
+RUN pip3 install -r requirements.txt
+CMD [ "python3", "./application.py"]
+EXPOSE 5000
