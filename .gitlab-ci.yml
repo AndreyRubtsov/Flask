@@ -3,7 +3,7 @@ build-job:
   image: docker:latest
   script:
     - echo "Hello, $GITLAB_USER_LOGIN!
-    - ls -al
+    - pwd
     - docker build -t flask-itunes .
 
 test-job1:
