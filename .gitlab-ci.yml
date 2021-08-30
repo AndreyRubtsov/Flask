@@ -22,7 +22,7 @@ backend-build:
   script:
     - cd ./backend
     - docker build --pull -t "backend${tag}" .
-    - docker push "$CI_REGISTRY_IMAGE${tag}"
+    - docker push "backend${tag}"
   only:
     - master
 
