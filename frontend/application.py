@@ -10,7 +10,7 @@ def apple_root():
         database="flask",
         user="undrey",
         password="1234asDF",
-        host="3.21.205.216",
+        host="3.142.77.244",
         port="5432"
     )
     cur = con.cursor()
