@@ -1,43 +1,32 @@
+image: docker:latest
+services:
+  - docker:dind
+
 stages:
   - build
-  - test
   - deploy
 
-frontend-build:
-  image: docker:latest
+variables:
+  CONTAINER_IMAGE: undrey/frontend:${CI_COMMIT_SHORT_SHA}
+
+build:
   stage: build
-  services:
-    - docker:dind
-  before_script:
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
     - cd ./frontend
-    - docker build --pull -t "$CI_REGISTRY_IMAGE${tag}/frontend" .
-    - docker push "$CI_REGISTRY_IMAGE${tag}/frontend"
-  only:
-    - master
+    - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
+    - docker build -t ${CONTAINER_IMAGE} .
+    - docker tag ${CONTAINER_IMAGE} ${CONTAINER_IMAGE}
+    - docker tag ${CONTAINER_IMAGE} undrey/frontend:latest
+    - docker push ${CONTAINER_IMAGE}
 
-backend-build:
-  image: docker:latest
-  stage: build
-  services:
-    - docker:dind
-  before_script:
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-  script:
-    - cd ./backend
-    - docker build --pull -t "$CI_REGISTRY/andreyrubtsov/flask/backend" .
-    - docker push "$CI_REGISTRY/andreyrubtsov/flask/backend"
-  only:
-    - master
-
-test-job:
-  stage: test
-  script:
-    - echo "This job tests something"
-
-
-deploy-prod:
+deploy:
   stage: deploy
+  image: dtzar/helm-kubectl
   script:
-    - echo "This job deploys something from the $CI_COMMIT_BRANCH branch."
+    - kubectl config set-cluster k8s --server="${SERVER}"
+    - kubectl config set clusters.k8s.certificate-authority-data ${CERTIFICATE_AUTHORITY_DATA}
+    - kubectl config set-credentials gitlab --token="${USER_TOKEN}"
+    - kubectl config set-context default --cluster=k8s --user=gitlab
+    - kubectl config use-context default
+    - sed -i "s/<VERSION>/${CI_COMMIT_SHORT_SHA}/g" deploy.yaml
+    - kubectl apply -f deploy.yaml
