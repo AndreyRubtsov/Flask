@@ -21,7 +21,7 @@ build:
 
 deploy:
   stage: deploy
-  image: undrey/frontend:584f62db
+  image: dtzar/helm-kubectl
   script:
     - kubectl config set-cluster k8s --server="${SERVER}"
     - kubectl config set clusters.k8s.certificate-authority-data ${CERTIFICATE_AUTHORITY_DATA}
