@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: undrey/frontend:<VERSION>
+          image: undrey/frontend:584f62db
           ports:
             - containerPort: 5000
           livenessProbe:
