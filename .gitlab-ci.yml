@@ -24,6 +24,7 @@ deploy:
   stage: deploy
   image: dtzar/helm-kubectl
   script:
+    - kubectl get namespaces
     - kubectl config set-cluster k8s --server="${SERVER}"
     - kubectl config set clusters.k8s.certificate-authority-data ${CERTIFICATE_AUTHORITY_DATA}
     - kubectl config set-credentials gitlab --token="${USER_TOKEN}"
