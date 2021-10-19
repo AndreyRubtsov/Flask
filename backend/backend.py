@@ -92,6 +92,7 @@ def apple_root():
              res['primaryGenreName'], res['trackCount'], res['trackNumber'], res['releaseDate']))
         con.commit()
     con.close()
+    return "works!"
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
