@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name : xyz-web
-          image: undrey/backend:3ab1c2b5
+          image: undrey/backend:75ed0db5
           ports:
             - containerPort: 5000
 
@@ -26,7 +26,7 @@ metadata:
   name: backend-service
   labels:
      env  : prod
-     owner: Undrey
+     owner: DenisAstahov
 spec:
   selector:
     project: xyz      # Selecting PODs with those Labels
@@ -36,4 +36,3 @@ spec:
       port      : 80  # Port on Load Balancer
       targetPort: 5000  # Port on Pod
   type: LoadBalancer
-
