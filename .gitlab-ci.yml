@@ -20,7 +20,7 @@ frontend-build:
     - docker build -t ${CONTAINER_IMAGE_F} .
     - docker tag ${CONTAINER_IMAGE_F} ${CONTAINER_IMAGE_F}
     - docker tag ${CONTAINER_IMAGE_F} undrey/frontend:latest
-    - docker push ${CONTAINER_IMAGE_F}
+    - docker push ${CONTAINER_IMAGE_F} --all-tags
 
 backend-build:
   stage: build
@@ -30,19 +30,19 @@ backend-build:
     - docker build -t ${CONTAINER_IMAGE_B} .
     - docker tag ${CONTAINER_IMAGE_B} ${CONTAINER_IMAGE_B}
     - docker tag ${CONTAINER_IMAGE_B} undrey/backend:latest
-    - docker push ${CONTAINER_IMAGE_B}
+    - docker push ${CONTAINER_IMAGE_B} --all-tags
 
 
 
-#deploy:
-#  stage: deploy
-#  image: dtzar/helm-kubectl
-#  script:
-#    - kubectl get namespaces
-#    - kubectl config set-cluster k8s --server="${SERVER}"
-#    - kubectl config set clusters.k8s.certificate-authority-data ${CERTIFICATE_AUTHORITY_DATA}
-#    - kubectl config set-credentials gitlab --token="${USER_TOKEN}"
-#    - kubectl config set-context default --cluster=k8s --user=gitlab
-#    - kubectl config use-context default
-#    - sed -i "s/<VERSION>/${CI_COMMIT_SHORT_SHA}/g" create_first.yaml
-#    - kubectl apply -f create_first.yaml -n default
+deploy:
+  stage: deploy
+  image: dtzar/helm-kubectl
+  script:
+    - kubectl get namespaces
+    - kubectl config set-cluster k8s --server="${SERVER}"
+    - kubectl config set clusters.k8s.certificate-authority-data ${CERTIFICATE_AUTHORITY_DATA}
+    - kubectl config set-credentials gitlab --token="${USER_TOKEN}"
+    - kubectl config set-context default --cluster=k8s --user=gitlab
+    - kubectl config use-context default
+    #- sed -i "s/<VERSION>/${CI_COMMIT_SHORT_SHA}/g" create_first.yaml
+    - kubectl apply -f create_first.yaml -n default

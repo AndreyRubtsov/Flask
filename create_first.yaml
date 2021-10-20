@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name : xyz-web
-          image: undrey/backend:75ed0db5
+          image: undrey/backend:latest
           ports:
             - containerPort: 5000
 
