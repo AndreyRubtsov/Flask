@@ -21,7 +21,7 @@ frontend-build:
     - docker tag frontend undrey/frontend:0.1.1
     - docker tag frontend undrey/frontend:latest
     - docker tag frontend undrey/frontend:${CI_COMMIT_SHORT_SHA}
-    - docker push undrey/backend --all-tags
+    - docker push undrey/frontend --all-tags
 
 backend-build:
   stage: build
