@@ -26,7 +26,7 @@ metadata:
   name: backend-service
   labels:
      env  : prod
-     owner: DenisAstahov
+     owner: Rubtsov
 spec:
   selector:
     project: backend      # Selecting PODs with those Labels
