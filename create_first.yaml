@@ -7,14 +7,14 @@ metadata:
 spec:
   selector:
     matchLabels:
-      project: xyz
+      project: backend
   template:
     metadata:
       labels:
-        project: xyz   # Service will look for those PODS Labels!!!
+        project: backend   # Service will look for those PODS Labels!!!
     spec:
       containers:
-        - name : xyz-web
+        - name : backend-web
           image: undrey/backend:latest
           ports:
             - containerPort: 5000
@@ -29,7 +29,7 @@ metadata:
      owner: DenisAstahov
 spec:
   selector:
-    project: xyz      # Selecting PODs with those Labels
+    project: backend      # Selecting PODs with those Labels
   ports:
     - name      : app-listener
       protocol  : TCP

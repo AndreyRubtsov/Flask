@@ -12,14 +12,14 @@ metadata:
 spec:
   selector:
     matchLabels:
-      project: xyz
+      project: frontend
   template:
     metadata:
       labels:
-        project: xyz   # Service will look for those PODS Labels!!!
+        project: frontend   # Service will look for those PODS Labels!!!
     spec:
       containers:
-        - name : xyz-web
+        - name : frontend-web
           image: undrey/frontend:latest
           ports:
             - containerPort: 5000
@@ -33,7 +33,7 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v2beta1v1
     kind: Deployment
-    name: my-web-deployment-autoscaling
+    name: frontend-autoscaling
   minReplicas: 1
   maxReplicas: 5
   metrics:
@@ -50,13 +50,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-autoscaling-pod-service
+  name: frontend-service
   labels:
      env  : prod
      owner: DenisAstahov
 spec:
   selector:
-    project: xyz      # Selecting PODs with those Labels
+    project: frontend      # Selecting PODs with those Labels
   ports:
     - name      : app-listener
       protocol  : TCP
