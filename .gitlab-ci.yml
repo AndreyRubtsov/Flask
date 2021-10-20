@@ -31,7 +31,7 @@ backend-build:
     - docker build -t backend .
     - docker tag backend undrey/backend:0.1.1
     - docker tag backend undrey/backend:latest
-    - docker tag undrey/backend:${CI_COMMIT_SHORT_SHA}
+    - docker tag backend undrey/backend:${CI_COMMIT_SHORT_SHA}
     - docker push undrey/backend --all-tags
 
 
