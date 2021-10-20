@@ -17,10 +17,11 @@ frontend-build:
   script:
     - cd ./frontend
     - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
-    - docker build -t ${CONTAINER_IMAGE_F} .
-    - docker tag ${CONTAINER_IMAGE_F} ${CONTAINER_IMAGE_F}
-    - docker tag ${CONTAINER_IMAGE_F} undrey/frontend:latest
-    - docker push ${CONTAINER_IMAGE_F} --all-tags
+    - docker build -t frontend .
+    - docker tag frontend undrey/frontend:0.1.1
+    - docker tag frontend undrey/frontend:latest
+    - docker tag frontend undrey/frontend:${CI_COMMIT_SHORT_SHA}
+    - docker push undrey/backend --all-tags
 
 backend-build:
   stage: build
@@ -30,6 +31,7 @@ backend-build:
     - docker build -t backend .
     - docker tag backend undrey/backend:0.1.1
     - docker tag backend undrey/backend:latest
+    - docker tag undrey/backend:${CI_COMMIT_SHORT_SHA}
     - docker push undrey/backend --all-tags
 
 
