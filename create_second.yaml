@@ -23,7 +23,6 @@ spec:
           image: undrey/frontend:latest
           ports:
             - containerPort: 5000
-
 ---
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
