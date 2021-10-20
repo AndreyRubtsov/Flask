@@ -46,5 +46,5 @@ deploy:
     - kubectl config set-credentials gitlab --token="${USER_TOKEN}"
     - kubectl config set-context default --cluster=k8s --user=gitlab
     - kubectl config use-context default
-    #- sed -i "s/<VERSION>/${CI_COMMIT_SHORT_SHA}/g" create_first.yaml
     - kubectl apply -f create_first.yaml -n default
+    - kubectl apply -f create_second.yaml -n default

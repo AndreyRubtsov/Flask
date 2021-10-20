@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name : xyz-web
-          image: undrey/frontend:75ed0db5
+          image: undrey/frontend:latest
           ports:
             - containerPort: 5000
 
