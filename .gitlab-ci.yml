@@ -27,10 +27,10 @@ backend-build:
   script:
     - cd ./backend
     - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
-    - docker build -t ${CONTAINER_IMAGE_B} .
-    - docker tag ${CONTAINER_IMAGE_B} ${CONTAINER_IMAGE_B}
-    - docker tag ${CONTAINER_IMAGE_B} undrey/backend:latest
-    - docker push ${CONTAINER_IMAGE_B} --all-tags
+    - docker build -t backend .
+    - docker tag backend undrey/backend:0.1.1
+    - docker tag backend undrey/backend:latest
+    - docker push undrey/backend --all-tags
 
 
 
