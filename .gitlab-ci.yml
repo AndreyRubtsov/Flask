@@ -7,8 +7,6 @@ stages:
   - deploy
 
 variables:
-  CONTAINER_IMAGE_F: undrey/frontend:${CI_COMMIT_SHORT_SHA}
-  CONTAINER_IMAGE_B: undrey/backend:${CI_COMMIT_SHORT_SHA}
   DOCKER_HOST: tcp://localhost:2375
   DOCKER_TLS_CERTDIR: ""
 
@@ -17,32 +15,34 @@ frontend-build:
   script:
     - cd ./frontend
     - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
-    - docker build -t ${CONTAINER_IMAGE_F} .
-    - docker tag ${CONTAINER_IMAGE_F} ${CONTAINER_IMAGE_F}
-    - docker tag ${CONTAINER_IMAGE_F} undrey/frontend:latest
-    - docker push ${CONTAINER_IMAGE_F}
+    - docker build -t frontend .
+    - docker tag frontend undrey/frontend:0.1.1
+    - docker tag frontend undrey/frontend:latest
+    - docker tag frontend undrey/frontend:${CI_COMMIT_SHORT_SHA}
+    - docker push undrey/frontend --all-tags
 
 backend-build:
   stage: build
   script:
     - cd ./backend
     - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
-    - docker build -t ${CONTAINER_IMAGE_B} .
-    - docker tag ${CONTAINER_IMAGE_B} ${CONTAINER_IMAGE_B}
-    - docker tag ${CONTAINER_IMAGE_B} undrey/backend:latest
-    - docker push ${CONTAINER_IMAGE_B}
+    - docker build -t backend .
+    - docker tag backend undrey/backend:0.1.1
+    - docker tag backend undrey/backend:latest
+    - docker tag backend undrey/backend:${CI_COMMIT_SHORT_SHA}
+    - docker push undrey/backend --all-tags
 
 
 
-#deploy:
-#  stage: deploy
-#  image: dtzar/helm-kubectl
-#  script:
-#    - kubectl get namespaces
-#    - kubectl config set-cluster k8s --server="${SERVER}"
-#    - kubectl config set clusters.k8s.certificate-authority-data ${CERTIFICATE_AUTHORITY_DATA}
-#    - kubectl config set-credentials gitlab --token="${USER_TOKEN}"
-#    - kubectl config set-context default --cluster=k8s --user=gitlab
-#    - kubectl config use-context default
-#    - sed -i "s/<VERSION>/${CI_COMMIT_SHORT_SHA}/g" create_first.yaml
-#    - kubectl apply -f create_first.yaml -n default
+deploy:
+  stage: deploy
+  image: dtzar/helm-kubectl
+  script:
+    - kubectl get namespaces
+    - kubectl config set-cluster k8s --server="${SERVER}"
+    - kubectl config set clusters.k8s.certificate-authority-data ${CERTIFICATE_AUTHORITY_DATA}
+    - kubectl config set-credentials gitlab --token="${USER_TOKEN}"
+    - kubectl config set-context default --cluster=k8s --user=gitlab
+    - kubectl config use-context default
+    - kubectl apply -f create_first.yaml -n default
+    - kubectl apply -f create_second.yaml -n default
