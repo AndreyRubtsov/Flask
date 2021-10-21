@@ -11,7 +11,7 @@ def apple_root():
         database="flask",
         user="undrey",
         password="1234asDF",
-        host="3.144.81.225",
+        host="terraform-20211021191339741100000002.c0dbqh7qztvu.us-east-2.rds.amazonaws.com",
         port="5432"
     )
     cur = con.cursor()
