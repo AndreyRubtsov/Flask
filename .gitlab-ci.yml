@@ -3,6 +3,7 @@ services:
   - docker:18.09-dind
   
 stages:
+  - check
   - build
   - deploy
 
@@ -48,6 +49,7 @@ deploy:
     - kubectl apply -f create_second.yaml -n default
 
 sonarqube-check:
+  stage: check
   image:
     name: sonarsource/sonar-scanner-cli:latest
     entrypoint: [""]
