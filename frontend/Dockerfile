@@ -2,7 +2,9 @@ FROM python:3.8
 ENV ENV_RDS_HOST ${RDS_HOST}
 ENV ENV_RDS_DB ${RDS_DB}
 ENV ENV_RDS_USER = ${RDS_USER}
-ENV ENV_RDS_PASS = ${RDS_PASS}
+ENV ENV_RDS_PASS = 1
+ENV ENV_RDS_1 1
+
 COPY . /app
 WORKDIR /app
 RUN pip3 install -r requirements.txt
