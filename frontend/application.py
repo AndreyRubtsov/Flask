@@ -7,10 +7,10 @@ app = Flask(__name__)
 @app.route("/", methods=['GET', 'POST'])
 def apple_root():
     con = psycopg2.connect(
-        database=${RDS_DB},
-        user=${RDS_USER},
-        password=${RDS_PASS},
-        host=${RDS_HOST},
+        database=ENV_RDS_DB,
+        user=ENV_RDS_USER,
+        password=ENV_RDS_PASS,
+        host=ENV_RDS_HOST,
         port="5432"
     )
     cur = con.cursor()
