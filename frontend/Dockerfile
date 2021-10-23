@@ -7,6 +7,7 @@ ENV ENV_RDS_HOST $DB_HOST
 ENV ENV_RDS_DB $DB_NAME
 ENV ENV_RDS_USER $DB_USER
 ENV ENV_RDS_PASS $DB_PASS
+COPY .env .env
 COPY . /app
 WORKDIR /app
 RUN pip3 install -r requirements.txt
