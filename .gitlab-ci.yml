@@ -15,6 +15,7 @@ frontend-build:
   stage: build
   script:
     - cd ./frontend
+    - echo $ENV_FILE
     - cp $ENV_FILE .env
     - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
     - docker build -t frontend . --build-arg DB_HOST=${RDS_HOST} --build-arg DB_NAME=${RDS_DB} --build-arg DB_USER=${RDS_USER} --build-arg DB_PASS=${RDS_PASS}
