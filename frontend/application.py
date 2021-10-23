@@ -1,4 +1,5 @@
 import psycopg2
+import os
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
@@ -7,10 +8,10 @@ app = Flask(__name__)
 @app.route("/", methods=['GET', 'POST'])
 def apple_root():
     con = psycopg2.connect(
-        database=ENV_RDS_DB,
-        user=ENV_RDS_USER,
-        password=ENV_RDS_PASS,
-        host=ENV_RDS_HOST,
+        database= os.getenv('ENV_RDS_DB'),
+        user=os.getenv('ENV_RDS_USER'),
+        password=os.getenv('ENV_RDS_PASS'),
+        host=os.getenv('ENV_RDS_HOST'),
         port="5432"
     )
     cur = con.cursor()

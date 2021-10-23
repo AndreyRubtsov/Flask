@@ -8,10 +8,10 @@ app = Flask(__name__)
 def apple_root():
     # connect to database
     con = psycopg2.connect(
-        database=${RDS_DB},
-        user=${RDS_USER},
-        password=${RDS_PASS},
-        host=${RDS_HOST},
+        database= os.getenv('ENV_RDS_DB'),
+        user=os.getenv('ENV_RDS_USER'),
+        password=os.getenv('ENV_RDS_PASS'),
+        host=os.getenv('ENV_RDS_HOST'),
         port="5432"
     )
     cur = con.cursor()
