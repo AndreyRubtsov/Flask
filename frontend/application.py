@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route("/", methods=['GET', 'POST'])
 def apple_root():
     con = psycopg2.connect(
-        database= os.getenv('ENV_RDS_DB'),
+        database=os.getenv('ENV_RDS_DB'),
         user=os.getenv('ENV_RDS_USER'),
         password=os.getenv('ENV_RDS_PASS'),
         host=os.getenv('ENV_RDS_HOST'),
@@ -38,13 +38,14 @@ def apple_root():
 
     if request.method == 'POST':
         if request.form.get('submit_b'):
-            undrey_year=int(request.form.get('text_field'))
+            undrey_year = int(request.form.get('text_field'))
             print(undrey_year)
             print(type(undrey_year))
 
             # some test
             cur = con.cursor()
-            cur.execute(f'select * from pink_floyd_table where DATE_PART(\'year\', releasedate::date) = {undrey_year} order by trackPrice desc;')
+            cur.execute(
+                f'select * from pink_floyd_table where DATE_PART(\'year\', releasedate::date) = {undrey_year} order by trackPrice desc;')
             result = cur.fetchall()
             con.close()
             track_array = []
