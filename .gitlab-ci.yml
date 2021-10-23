@@ -16,7 +16,10 @@ frontend-build:
   script:
     - cd ./frontend
     - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
-    - docker build -t frontend --build-arg DB_HOST=${RDS_HOST} DB_NAME=${RDS_DB} DB_USER=${RDS_USER} DB_PASS=${RDS_PASS} .
+    - docker build -t frontend . --build-arg DB_HOST=${RDS_HOST} \
+                                 --build-arg DB_NAME=${RDS_DB} \
+                                 --build-arg DB_USER=${RDS_USER} \
+                                 --build-arg DB_PASS=${RDS_PASS}
     - docker tag frontend undrey/frontend:0.1.1
     - docker tag frontend undrey/frontend:latest
     - docker tag frontend undrey/frontend:${CI_COMMIT_SHORT_SHA}
@@ -27,7 +30,10 @@ backend-build:
   script:
     - cd ./backend
     - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
-    - docker build -t backend --build-arg DB_HOST=${RDS_HOST} DB_NAME=${RDS_DB} DB_USER=${RDS_USER} DB_PASS=${RDS_PASS} .
+    - docker build -t backend . --build-arg DB_HOST=${RDS_HOST} \
+                                --build-arg DB_NAME=${RDS_DB} \
+                                --build-arg DB_USER=${RDS_USER} \
+                                --build-arg DB_PASS=${RDS_PASS}
     - docker tag backend undrey/backend:0.1.1
     - docker tag backend undrey/backend:latest
     - docker tag backend undrey/backend:${CI_COMMIT_SHORT_SHA}
