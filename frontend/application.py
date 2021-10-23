@@ -7,10 +7,10 @@ app = Flask(__name__)
 @app.route("/", methods=['GET', 'POST'])
 def apple_root():
     con = psycopg2.connect(
-        database="flask",
-        user="undrey",
-        password="1234asDF",
-        host="terraform-20211021191339741100000002.c0dbqh7qztvu.us-east-2.rds.amazonaws.com",
+        database=${RDS_DB},
+        user=${RDS_USER},
+        password=${RDS_PASS},
+        host=${RDS_HOST},
         port="5432"
     )
     cur = con.cursor()
