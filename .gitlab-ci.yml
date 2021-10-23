@@ -16,7 +16,7 @@ frontend-build:
   script:
     - cd ./frontend
     - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
-    - docker build -t frontend .
+    - docker build -t frontend . --build-arg TEST1=${RDS_HOST}
     - docker tag frontend undrey/frontend:0.1.1
     - docker tag frontend undrey/frontend:latest
     - docker tag frontend undrey/frontend:${CI_COMMIT_SHORT_SHA}
