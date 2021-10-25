@@ -8,10 +8,10 @@ app = Flask(__name__)
 def apple_root():
     # connect to database
     con = psycopg2.connect(
-        database= os.getenv('ENV_RDS_DB'),
-        user=os.getenv('ENV_RDS_USER'),
-        password=os.getenv('ENV_RDS_PASS'),
-        host=os.getenv('ENV_RDS_HOST'),
+        database="flask",
+        user="undrey",
+        password="1234asDF",
+        host="terraform-20211021191339741100000002.c0dbqh7qztvu.us-east-2.rds.amazonaws.com",
         port="5432"
     )
     cur = con.cursor()
@@ -19,7 +19,7 @@ def apple_root():
     # creating table if not exit and erasing data
     cur.execute(
         'CREATE TABLE IF NOT EXISTS pink_floyd_table (id serial PRIMARY KEY, kind varchar, collectionName varchar,'
-        ' trackName varchar, collectionPrice varchar, trackPrice varchar, primaryGenreName varchar,'
+        ' trackName varchar, collectionPrice numeric(6,2), trackPrice numeric(6,2), primaryGenreName varchar,'
         ' trackCount varchar, trackNumber varchar, releaseDate timestamp);')
     cur.execute('TRUNCATE TABLE pink_floyd_table RESTART IDENTITY;')
     con.commit()
@@ -36,11 +36,11 @@ def apple_root():
             if 'trackNumber' not in res:
                 res['trackNumber'] = 'No Data'
             if 'collectionPrice' not in res:
-                res['collectionPrice'] = 'No Data'
+                res['collectionPrice'] = 0
             if 'collectionName' not in res:
                 res['collectionName'] = 'No Data'
             if 'trackPrice' not in res:
-                res['trackPrice'] = 'No Data'
+                res['trackPrice'] = 0
             if 'trackCount' not in res:
                 res['trackCount'] = 'No Data'
             if 'releaseDate' not in res:
@@ -56,11 +56,11 @@ def apple_root():
             if 'trackNumber' not in res:
                 res['trackNumber'] = 'No Data'
             if 'collectionPrice' not in res:
-                res['collectionPrice'] = 'No Data'
+                res['collectionPrice'] = 0
             if 'trackName' not in res:
                 res['trackName'] = 'No Data'
             if 'trackPrice' not in res:
-                res['trackPrice'] = 'No Data'
+                res['trackPrice'] = 0
             if 'kind' not in res:
                 res['kind'] = 'album'
             raw_list.append(res)
@@ -73,9 +73,9 @@ def apple_root():
                 if 'trackNumber' not in res:
                     res['trackNumber'] = 'No Data'
                 if 'collectionPrice' not in res:
-                    res['collectionPrice'] = 'No Data'
+                    res['collectionPrice'] = 0
                 if 'trackPrice' not in res:
-                    res['trackPrice'] = 'No Data'
+                    res['trackPrice'] = 0
                 raw_list.append(res)
 
     # removing duplicates

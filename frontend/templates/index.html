@@ -5,14 +5,15 @@
     <link rel="stylesheet" href="{{url_for('static',filename = 'styles.css')}}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<!--    <link rel="stylesheet" href="{{url_for('static',filename = 'styles.css')}}">-->
+    <!--    <link rel="stylesheet" href="{{url_for('static',filename = 'styles.css')}}">-->
     <title>Pink Floyd</title>
 </head>
 <body>
 <div class="container-fluid">
     <main>
         <div class="py-5 text-center">
-            <img class="d-block mx-auto mb-4" src="{{url_for('static',filename = 'pf.png')}}" alt="" width="225" height="225">
+            <img class="d-block mx-auto mb-4" src="{{url_for('static',filename = 'pf.png')}}" alt="" width="225"
+                 height="225">
             <h2>Pink Floyd</h2>
             <p class="lead">This is all data from iTunes about Pink Floyd</p>
         </div>
@@ -27,10 +28,11 @@
                     </li>
                 </ul>
 
-                <form class="card p-2"  method ="post" action="/">
+                <form class="card p-2" method="post" action="/">
                     <div class="input-group">
                         <input type="text" name="text_field" class="form-control" placeholder="Year">
                         <button type="submit" name="submit_b" value="submit_b" class="btn btn-secondary">Get!</button>
+                        <button type="submit" name="submit_c" value="submit_c" class="btn btn-secondary">StressTest</button>
                     </div>
                 </form>
             </div>
@@ -38,7 +40,7 @@
                 <h4 class="mb-3">Items</h4>
                 <form class="needs-validation" novalidate="">
                     <div class="row g-3">
-                        <div >
+                        <div>
                             <table class="table table-hover table-sm">
                                 <thead>
                                 <tr>
@@ -79,9 +81,6 @@
     </main>
 
 </div>
-
-
-
 
 
 </body>
