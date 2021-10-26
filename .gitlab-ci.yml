@@ -13,6 +13,8 @@ variables:
 
 frontend-build:
   stage: build
+  environment:
+    name: test
   script:
     - cd ./frontend
     - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
@@ -24,6 +26,8 @@ frontend-build:
 
 backend-build:
   stage: build
+  environment:
+    name: test
   script:
     - cd ./backend
     - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
@@ -37,6 +41,8 @@ backend-build:
 
 deploy:
   stage: deploy
+  environment:
+    name: test
   image: dtzar/helm-kubectl
   script:
     - kubectl get namespaces
