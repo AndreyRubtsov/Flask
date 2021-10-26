@@ -67,8 +67,8 @@ def apple_root():
 
             return render_template("index.html", datas=track_array)
         if request.form.get('submit_c'):
-            for i in range(0, 100):
-                n = 10000
+            for i in range(0, 1000):
+                n = 1000000
                 factorial = 1
                 for i in range(2, n + 1):
                     factorial *= i
