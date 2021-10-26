@@ -1,5 +1,6 @@
 import requests
 import psycopg2
+import os
 from flask import Flask
 
 app = Flask(__name__)

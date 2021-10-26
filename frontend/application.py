@@ -66,6 +66,14 @@ def apple_root():
                 track_array.append(pink_floyd_data)
 
             return render_template("index.html", datas=track_array)
+        if request.form.get('submit_c'):
+            for i in range(0, 100):
+                n = 10000
+                factorial = 1
+                for i in range(2, n + 1):
+                    factorial *= i
+                print(factorial)
+            return render_template("index.html", datas=track_array)
     return render_template("index.html", datas=track_array)
 
 
