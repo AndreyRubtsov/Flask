@@ -2,6 +2,11 @@ apiVersion : apps/v1
 kind: Deployment
 metadata:
   name: frontend-deploy
+  ##test
+  annotations:
+    app.gitlab.com/app: ${CI_PROJECT_PATH_SLUG}
+    app.gitlab.com/env: ${CI_ENVIRONMENT_SLUG}
+  ##test
   labels:
     app : frontend-deployment
 spec:
@@ -23,6 +28,11 @@ apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
   name: frontend-autoscaling
+  ##test
+  annotations:
+    app.gitlab.com/app: ${CI_PROJECT_PATH_SLUG}
+    app.gitlab.com/env: ${CI_ENVIRONMENT_SLUG}
+  ##test
 spec:
   scaleTargetRef:
     apiVersion: apps/v2beta1v1
@@ -45,6 +55,11 @@ apiVersion: v1
 kind: Service
 metadata:
   name: frontend-service
+  ##test
+  annotations:
+    app.gitlab.com/app: ${CI_PROJECT_PATH_SLUG}
+    app.gitlab.com/env: ${CI_ENVIRONMENT_SLUG}
+  ##test
   labels:
      env  : prod
      owner: Rubtsov
