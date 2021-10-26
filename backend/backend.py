@@ -20,8 +20,9 @@ def apple_root():
     # creating table if not exit and erasing data
     cur.execute(
         'CREATE TABLE IF NOT EXISTS pink_floyd_table (id serial PRIMARY KEY, kind varchar, collectionName varchar,'
-        ' trackName varchar, collectionPrice varchar, trackPrice varchar, primaryGenreName varchar,'
+        ' trackName varchar, collectionPrice numeric(6,2), trackPrice numeric(6,2), primaryGenreName varchar,'
         ' trackCount varchar, trackNumber varchar, releaseDate timestamp);')
+
     cur.execute('TRUNCATE TABLE pink_floyd_table RESTART IDENTITY;')
     con.commit()
 
