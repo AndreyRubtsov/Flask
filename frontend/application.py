@@ -63,18 +63,15 @@ def apple_root():
 
             return render_template("index.html", datas=track_array)
         if request.form.get('submit_c'):
-            while True:
-                startTime = time.now()
-                while date.now() - startTime < 0.8:
-                    n = 10000
-                    factorial = 1
-                    for i in range(2, n + 1):
-                        factorial *= i
-                    print(factorial)
-                time.sleep(0.2)
+            for i in range(0, 100):
+                n = 10000
+                factorial = 1
+                for i in range(2, n + 1):
+                    factorial *= i
+                print(factorial)
             return render_template("index.html", datas=track_array)
-    return render_template("index.html", datas=track_array)
 
+    return render_template("index.html", datas=track_array)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
