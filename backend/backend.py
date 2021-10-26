@@ -38,11 +38,11 @@ def apple_root():
             if 'trackNumber' not in res:
                 res['trackNumber'] = 'No Data'
             if 'collectionPrice' not in res:
-                res['collectionPrice'] = 'No Data'
+                res['collectionPrice'] = 0
             if 'collectionName' not in res:
                 res['collectionName'] = 'No Data'
             if 'trackPrice' not in res:
-                res['trackPrice'] = 'No Data'
+                res['trackPrice'] = 0
             if 'trackCount' not in res:
                 res['trackCount'] = 'No Data'
             if 'releaseDate' not in res:
@@ -58,11 +58,11 @@ def apple_root():
             if 'trackNumber' not in res:
                 res['trackNumber'] = 'No Data'
             if 'collectionPrice' not in res:
-                res['collectionPrice'] = 'No Data'
+                res['collectionPrice'] = 0
             if 'trackName' not in res:
                 res['trackName'] = 'No Data'
             if 'trackPrice' not in res:
-                res['trackPrice'] = 'No Data'
+                res['trackPrice'] = 0
             if 'kind' not in res:
                 res['kind'] = 'album'
             raw_list.append(res)
@@ -75,9 +75,9 @@ def apple_root():
                 if 'trackNumber' not in res:
                     res['trackNumber'] = 'No Data'
                 if 'collectionPrice' not in res:
-                    res['collectionPrice'] = 'No Data'
+                    res['collectionPrice'] = 0
                 if 'trackPrice' not in res:
-                    res['trackPrice'] = 'No Data'
+                    res['trackPrice'] = 0
                 raw_list.append(res)
 
     # removing duplicates
