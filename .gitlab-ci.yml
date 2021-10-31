@@ -41,6 +41,7 @@ deploy:
     name: test
   image: dtzar/helm-kubectl
   script:
+    - kubectl apply -f https://projectcontour.io/quickstart/contour.yaml
     - kubectl apply -f create_first.yaml -n default
     - kubectl apply -f create_second.yaml -n default
 
