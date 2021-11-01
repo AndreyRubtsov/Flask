@@ -4,23 +4,43 @@ metadata:
   name: ingress-undrey
 spec:
   rules:
-  - host: "loki.k8s-test.link"
-    http:
-      paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-            name: loki-grafana
-            port:
-              number: 80
-  - host: "sonarqube.k8s-test.link"
-    http:
-      paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-            name: sonarqube-sonarqube
-            port:
-              number: 9000
+    - host: "loki.k8s-test.link"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: loki-grafana
+                port:
+                  number: 80
+    - host: "sonarqube.k8s-test.link"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: sonarqube-sonarqube
+                port:
+                  number: 9000
+    - host: "frontend.k8s-test.link"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: frontend-service
+                port:
+                  number: 80
+    - host: "backend.k8s-test.link"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: backend-service
+                port:
+                  number: 80
