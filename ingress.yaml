@@ -1,15 +1,26 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: minimal-ingress
+  name: ingress-undrey
 spec:
   rules:
-  - http:
+  - host: "loki.k8s-test.link"
+    http:
       paths:
-      - path: /
-        pathType: Prefix
+      - pathType: Prefix
+        path: "/"
         backend:
           service:
             name: loki-grafana
             port:
               number: 80
+  - host: "sonarqube.k8s-test.link"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: sonarqube-sonarqube
+            port:
+              number: 9000

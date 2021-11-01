@@ -52,7 +52,7 @@ kubectl apply -f https://projectcontour.io/quickstart/contour.yaml
 git clone https://gitlab.com/AndreyRubtsov/loki.git
 helm upgrade --install loki loki/  --set grafana.enabled=true,prometheus.enabled=true,prometheus.alertmanager.persistentVolume.enabled=false,prometheus.server.persistentVolume.enabled=false
 kubectl get secret loki-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
-kubectl apply -f ingress
+
 
 ### sonarqube
 helm repo add sonarqube https://SonarSource.github.io/helm-chart-sonarqube
@@ -60,3 +60,4 @@ helm repo update
 kubectl create namespace sonarqube
 helm upgrade --install -n sonarqube sonarqube sonarqube/sonarqube
 
+kubectl apply -f ingress
