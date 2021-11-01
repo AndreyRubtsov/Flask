@@ -1,0 +1,62 @@
+##infra install
+nano terraform.tfvars
+terraform apply -var-file=credentials.tfvars
+cd ../../../
+ansible-playbook -i ./inventory/hosts -e cloud_provider=aws -e ansible_user=ubuntu -b -v cluster.yml
+ssh -F ssh-bastion.conf ubuntu@IP
+
+#integration
+save rds url
+kubectl get secrets
+kubectl get secret default-token-7b8nt -o jsonpath="{['data']['ca\.crt']}" | base64 --decode
+nano gitlab
+###
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: gitlab
+  namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: gitlab-admin
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: gitlab
+    namespace: kube-system
+###
+kubectl apply -f gitlab
+kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep gitlab | awk '{print $1}')
+
+### add runner
+snap install helm --classic
+helm repo add gitlab https://charts.gitlab.io
+kubectl create namespace gitlab
+helm install --namespace gitlab gitlab-runner gitlab/gitlab-runner   --set rbac.create=true   --set runners.privileged=true   --set gitlabUrl=https://gitlab.com/   --set runnerRegistrationToken=TOKEN
+
+### add metrics-server
+kubectl apply -f storage_class
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+kubectl edit deploy metrics-server -n kube-system
+      containers:
+      - args:
+        - --kubelet-insecure-tls
+
+### ingress
+kubectl apply -f https://projectcontour.io/quickstart/contour.yaml
+git clone https://gitlab.com/AndreyRubtsov/loki.git
+helm upgrade --install loki loki/  --set grafana.enabled=true,prometheus.enabled=true,prometheus.alertmanager.persistentVolume.enabled=false,prometheus.server.persistentVolume.enabled=false
+kubectl get secret loki-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+kubectl apply -f ingress
+
+### sonarqube
+helm repo add sonarqube https://SonarSource.github.io/helm-chart-sonarqube
+helm repo update
+kubectl create namespace sonarqube
+helm upgrade --install -n sonarqube sonarqube sonarqube/sonarqube
+
