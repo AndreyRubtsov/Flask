@@ -39,8 +39,6 @@ def apple_root():
     if request.method == 'POST':
         if request.form.get('submit_b'):
             undrey_year = int(request.form.get('text_field'))
-            print(undrey_year)
-            print(type(undrey_year))
 
             # some test
             cur = con.cursor()
@@ -68,7 +66,8 @@ def apple_root():
             return render_template("index.html", datas=track_array)
         if request.form.get('submit_c'):
             for i in range(0, 1000):
-                n = 1000000
+                #1000000 is too much
+                n = 100000
                 factorial = 1
                 for i in range(2, n + 1):
                     factorial *= i
