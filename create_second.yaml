@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name : frontend-web
-          image: undrey/frontend:latest
+          image: undrey/frontend:0.2.1
           ports:
             - containerPort: 5000
           resources:

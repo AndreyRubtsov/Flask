@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name : backend-web
-          image: undrey/backend:latest
+          image: undrey/backend:0.2.1
           ports:
             - containerPort: 5000
 

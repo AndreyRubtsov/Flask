@@ -37,7 +37,7 @@ kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | gre
 snap install helm --classic
 helm repo add gitlab https://charts.gitlab.io
 kubectl create namespace gitlab
-helm install --namespace gitlab gitlab-runner gitlab/gitlab-runner   --set rbac.create=true   --set runners.privileged=true   --set gitlabUrl=https://gitlab.com/   --set runnerRegistrationToken=TOKEN
+helm install --namespace gitlab gitlab-runner gitlab/gitlab-runner   --set rbac.create=true   --set runners.privileged=true   --set gitlabUrl=https://gitlab.com/   --set runnerRegistrationToken=oRTsU3M1-ysRSYHZsPrQ
 
 ### add metrics-server
 kubectl apply -f storage_class
