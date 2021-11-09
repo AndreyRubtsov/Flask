@@ -24,7 +24,6 @@ spec:
           image: undrey/backend:latest
           ports:
             - containerPort: 5000
-          imagePullPolicy: Always
 
 ---
 apiVersion: v1
