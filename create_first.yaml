@@ -5,6 +5,12 @@ metadata:
   labels:
     app : backend-deployment
 spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
   selector:
     matchLabels:
       project: backend
@@ -18,6 +24,7 @@ spec:
           image: undrey/backend:latest
           ports:
             - containerPort: 5000
+      imagePullPolicy: Always
 
 ---
 apiVersion: v1
