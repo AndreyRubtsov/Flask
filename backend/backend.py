@@ -4,14 +4,10 @@ import os
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
-# v_database=os.getenv('ENV_RDS_DB')
-# v_user=os.getenv('ENV_RDS_USER')
-# v_password=os.getenv('ENV_RDS_PASS')
-# v_host=os.getenv('ENV_RDS_HOST')
-v_database = 'flask'
-v_user = 'undrey'
-v_password = '1234asDF'
-v_host = '3.139.83.74'
+v_database=os.getenv('ENV_RDS_DB')
+v_user=os.getenv('ENV_RDS_USER')
+v_password=os.getenv('ENV_RDS_PASS')
+v_host=os.getenv('ENV_RDS_HOST')
 
 
 @app.route("/", methods=['GET', 'POST'])
